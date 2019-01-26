@@ -1,4 +1,48 @@
 <resources>
     <string name="app_name">Hope</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string-array name="race">
+        <item>Indian</item>
+        <item>Black</item>
+        <item>white and asian</item>
+        <item>Mixed</item>
+    </string-array>
+    <string-array name="body">
+        <item>Overweight</item>
+        <item>Underweight</item>
+        <item>Normal weight</item>
+        <item>Obese</item>
+    </string-array>
+    <string-array name="education">
+        <item>Bachelor’s degree</item>
+        <item>Doctorate degree</item>
+        <item>Master’s degree</item>
+        <item>Professional degree</item>
+        <item>Some college, no degree</item>
+        <item>Some high school, no diploma</item>
+    </string-array>
+    <string-array name="employment">
+        <item>Employed for wages</item>
+        <item>Military</item>
+        <item>Out of work and looking for work</item>
+        <item>Out of work but not currently looking for work</item>
+        <item>Retired</item>
+        <item>Unable to work</item>
+        <item>A homemaker</item>
+        <item>A student</item>
+    </string-array>
+    <string-array name="income">
+        <item>$0</item>
+        <item>$1 to $10,000</item>
+        <item>$10,000 to $19,999</item>
+        <item>$100,000 to $124,999</item>
+        <item>$125,000 to $149,999</item>
+        <item>$150,000 to $174,999</item>
+    </string-array>
 </resources>
