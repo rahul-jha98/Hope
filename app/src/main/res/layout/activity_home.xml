@@ -21,7 +21,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_home"/>
+    <include layout="@layout/content_home" android:id="@+id/include"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -45,5 +45,6 @@
                                                   app:behavior_peekHeight="0dp"
               app:elevation = "20dp"
                                                   android:name="com.rahul.hope.fragments.EmergencyCallFragment"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
