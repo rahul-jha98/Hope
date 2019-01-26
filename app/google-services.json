@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "988629004611",
+    "firebase_url": "https://hope-7fb17.firebaseio.com",
+    "project_id": "hope-7fb17",
+    "storage_bucket": "hope-7fb17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988629004611:android:aafcd40186565207",
+        "android_client_info": {
+          "package_name": "com.rahul.hope"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988629004611-0uhe35c05b48v71nivuh82abmhupd7ra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUWlUtouOep5NFa5QreQnZAeUBAIAAO7w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
