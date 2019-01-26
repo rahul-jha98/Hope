@@ -1,3 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="message_padding">8dp</dimen>
+    <dimen name="max_message_width">250dp</dimen>
+    <dimen name="min_message_width">80dp</dimen>
 </resources>

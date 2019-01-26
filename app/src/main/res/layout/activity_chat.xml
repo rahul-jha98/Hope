@@ -9,42 +9,42 @@
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidth="3dp" android:id="@+id/userInputLayout"
-            app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
-            app:layout_constraintTop_toTopOf="@+id/floatingActionButton">
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/sendFab"
+            app:hintEnabled="false"
+            app:helperTextEnabled="false"
+            android:clipChildren="true"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userInputEditText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAllCaps="true"
-                android:inputType="text"/>
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:layout_gravity="bottom"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabCustomSize="50dp"
             android:clickable="true" app:srcCompat="@drawable/ic_launcher_foreground"
-            android:id="@+id/floatingActionButton" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+            android:id="@+id/sendFab" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-    />
-    <androidx.constraintlayout.widget.Guideline
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/guideline"/>
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/userInputLayout"
+            android:id="@+id/rvMessages" app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
