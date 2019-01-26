@@ -3,7 +3,8 @@
     <dimen name="message_padding">8dp</dimen>
     <dimen name="max_message_width">250dp</dimen>
     <dimen name="min_message_width">80dp</dimen>
-    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">20dp</dimen>
+    <dimen name="bottom_sheet_top_padding">10dp</dimen>
 </resources>

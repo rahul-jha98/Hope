@@ -10,6 +10,7 @@ import com.rahul.hope.models.Message
 import kotlinx.android.synthetic.main.activity_chat.*
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -31,21 +32,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-
-
-        userInputEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) =
-                if (charSequence.toString().trim { it <= ' ' }.isNotEmpty()) {
-                    sendFab.isEnabled = true
-                } else {
-                    sendFab.setEnabled(false)
-                }
-
-            override fun afterTextChanged(editable: Editable) {}
-        })
-
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         mChatAdapter = MessageAdapter(this)
         val messageLayout = LinearLayoutManager(this@ChatActivity, RecyclerView.VERTICAL, false)
@@ -56,10 +43,10 @@ class ChatActivity : AppCompatActivity() {
 
         sendFab.setOnClickListener {
             val text = userInputEditText.text.toString()
+            if(text.isEmpty())
+                return@setOnClickListener
             userInputEditText.setText("")
-
             databaseReference.push().setValue(Message(text, displayName))
-
         }
 
         childEventListener = object : ChildEventListener {
@@ -76,6 +63,7 @@ class ChatActivity : AppCompatActivity() {
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                chatProgressBar.visibility = View.GONE
                 val message = p0.getValue(Message::class.java)
                 message?.let {message ->
                     if(lastUserName.isEmpty()) {

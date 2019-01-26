@@ -20,6 +20,7 @@
             app:hintEnabled="false"
             app:helperTextEnabled="false"
             android:clipChildren="true"
+            app:boxBackgroundColor="@color/message_background"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -33,10 +34,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabCustomSize="50dp"
-            android:clickable="true" app:srcCompat="@drawable/ic_launcher_foreground"
+            android:clickable="true" app:srcCompat="@drawable/ic_send_24dp"
             android:id="@+id/sendFab" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginBottom="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" app:backgroundTint="@color/colorPrimary"
+    />
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -46,5 +48,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/userInputLayout"
             android:id="@+id/rvMessages" app:layout_constraintTop_toTopOf="parent"/>
-
+    <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chatProgressBar" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="@+id/rvMessages"
+            android:layout_marginBottom="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
