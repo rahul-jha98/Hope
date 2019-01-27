@@ -78,6 +78,7 @@ class SearchFragment : Fragment() {
         joinButton.setOnClickListener {
             data?.let{
                 roomViewModelFactory.addChatRoom(ChatRoomEntry(it.name))
+                launchBottomSheetListener?.launchBottomSheet(5)
             }
         }
 

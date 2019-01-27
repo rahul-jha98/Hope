@@ -99,7 +99,7 @@
                 android:id="@+id/textView14"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="24dp" android:textSize="18sp" android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup3" android:text="Are you vergin?"/>
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup3" android:text="Are you virgin?"/>
 
         <RadioGroup
                 android:layout_width="wrap_content"

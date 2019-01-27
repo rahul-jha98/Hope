@@ -44,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
                         .createSignInIntentBuilder().setIsSmartLockEnabled(false)
                         .setAvailableProviders(
                             Arrays.asList<AuthUI.IdpConfig>(
-                                AuthUI.IdpConfig.GoogleBuilder().build(),
                                 AuthUI.IdpConfig.EmailBuilder().build()
                             )
                         )

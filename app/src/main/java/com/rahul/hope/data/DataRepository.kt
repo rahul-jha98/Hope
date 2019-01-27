@@ -35,9 +35,9 @@ class DataRepository(private var mContactsDao: EmergencyContactsDao,
         }
     }
 
-    private fun init() {
+    fun init() {
         addContact(EmergencyContactEntry( "112", "All In One Helpline", 1))
-        addContact(EmergencyContactEntry( "181", "Women's Helpline", 1))
+        addContact(EmergencyContactEntry( "022 2754 6669", "AASRA", 1))
     }
 
     @Synchronized
@@ -66,4 +66,5 @@ class DataRepository(private var mContactsDao: EmergencyContactsDao,
     fun getChatRooms() : LiveData<List<ChatRoomEntry>> {
         return mChatRoomDao.getAllChatRooms()
     }
+
 }

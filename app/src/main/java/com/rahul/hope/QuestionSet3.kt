@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.rahul.hope.data.DataRepository
 import com.rahul.hope.data.network.ApiService
 import com.rahul.hope.data.network.Base
 import kotlinx.android.synthetic.main.fragment_question_set1.*
@@ -26,7 +27,7 @@ class QuestionSet3 : Fragment() {
 
     private lateinit var apiClient : ApiService
     private lateinit var sharedPreferences: SharedPreferences
-
+    private lateinit var repository: DataRepository
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -94,7 +95,7 @@ class QuestionSet3 : Fragment() {
                         val editor = sharedPreferences!!.edit()
                         editor.putFloat(STATUS, it.predicted[0].toFloat() * 100)
                         editor.apply()
-
+                        repository.init()
                         startActivity(Intent(activity!!, HomeActivity::class.java))
                         activity?.finish()
                     }
@@ -110,6 +111,7 @@ class QuestionSet3 : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         apiClient = (context.applicationContext as HopeApplication).applicationComponent.getApiService()
+        repository =  (context.applicationContext as HopeApplication).applicationComponent.getRepository()
         sharedPreferences = context.getSharedPreferences(sharedPath, 0)
     }
 }
