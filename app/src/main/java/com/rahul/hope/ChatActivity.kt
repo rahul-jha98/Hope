@@ -10,6 +10,7 @@ import com.rahul.hope.models.Message
 import kotlinx.android.synthetic.main.activity_chat.*
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -33,6 +34,11 @@ class ChatActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        val name = intent.getStringExtra("name")
+
+        title = name
+        databaseReference = databaseReference.child(name)
 
         mChatAdapter = MessageAdapter(this)
         val messageLayout = LinearLayoutManager(this@ChatActivity, RecyclerView.VERTICAL, false)
@@ -109,6 +115,14 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        mChatAdapter.clear()
         databaseReference.removeEventListener(childEventListener)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if(item?.itemId == android.R.id.home) {
+            onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

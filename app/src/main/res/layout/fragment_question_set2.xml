@@ -43,14 +43,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5" android:layout_marginTop="24dp"
                 app:layout_constraintTop_toBottomOf="@+id/spinner3" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="24dp" android:textSize="18sp"/>
+                android:layout_marginStart="24dp" android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/spinner4"/>
         <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner4" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="24dp"
-                android:entries="@array/employment"/>
+                android:id="@+id/spinner4"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp"
+                android:entries="@array/employment" app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:layout_constraintBottom_toTopOf="@+id/textView6"/>
         <TextView
                 android:text="What is your income?"
                 android:layout_width="wrap_content"

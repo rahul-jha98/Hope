@@ -3,11 +3,14 @@ package com.rahul.hope.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.rahul.hope.AppExecutors
+import com.rahul.hope.data.database.ChatRoomDao
+import com.rahul.hope.data.database.ChatRoomEntry
 import com.rahul.hope.data.database.EmergencyContactEntry
 import com.rahul.hope.data.database.EmergencyContactsDao
 
 
 class DataRepository(private var mContactsDao: EmergencyContactsDao,
+                     private var mChatRoomDao : ChatRoomDao,
                      private var mExecutors: AppExecutors
 ) {
     companion object {
@@ -19,11 +22,12 @@ class DataRepository(private var mContactsDao: EmergencyContactsDao,
 
         @Synchronized
         fun getInstance( mEmergencyContactsDao: EmergencyContactsDao,
+                         mChatRoomDao: ChatRoomDao,
                         executors: AppExecutors) : DataRepository{
             Log.d(LOG_TAG, "Getting the repository")
             if(sInstance == null) {
                 synchronized(LOCK) {
-                    sInstance = DataRepository(mEmergencyContactsDao, executors)
+                    sInstance = DataRepository(mEmergencyContactsDao, mChatRoomDao,executors)
                     Log.d(LOG_TAG, "Made a new repository")
                 }
             }
@@ -50,5 +54,16 @@ class DataRepository(private var mContactsDao: EmergencyContactsDao,
 
     fun getPersonalContacts() : LiveData<List<EmergencyContactEntry>> {
         return mContactsDao.getPersonalContacts()
+    }
+
+    @Synchronized
+    fun addChatRoom(chatRoomEntry: ChatRoomEntry) {
+        mExecutors.diskIO().execute {
+            mChatRoomDao.insertChatRoom(chatRoomEntry)
+        }
+    }
+
+    fun getChatRooms() : LiveData<List<ChatRoomEntry>> {
+        return mChatRoomDao.getAllChatRooms()
     }
 }

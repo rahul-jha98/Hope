@@ -3,6 +3,7 @@ package com.rahul.hope
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.net.Uri
@@ -35,11 +36,13 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeActivity : AppCompatActivity(), LaunchBottomSheetListener, JobListener {
     private var phoneNo = ""
 
+    private lateinit var sharedPreferences: SharedPreferences
     private val TAG = HomeActivity::class.java.simpleName
     private val REQUEST_CONTACTS_PERMISSION = 1234
     private val REQUEST_CALL_PERMISSION = 1235
     private val REQUEST_SMS_PERMISSION = 1236
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+    private lateinit var bottomSheetBehavior2: BottomSheetBehavior<View>
     private lateinit var dataRepository: DataRepository
     private lateinit var viewModel : ContactsViewModel
     private var currentSheet = 0
@@ -58,22 +61,27 @@ class HomeActivity : AppCompatActivity(), LaunchBottomSheetListener, JobListener
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
 
+        sharedPreferences = this.getSharedPreferences(sharedPath, 0)
         dataRepository = (application as HopeApplication).applicationComponent.getRepository()
         val viewModelFactory = (application as HopeApplication).applicationComponent.getViewModelFactory()
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ContactsViewModel::class.java)
 
         shadowView.visibility = View.GONE
-
+        shadowView2.visibility = View.GONE
 
         userNameTextView.text = "Hello, $displayName"
-        statusProgressBar.progress = 30
+        val progress = sharedPreferences.getFloat(STATUS, 30f).toInt()
+        statusTextView.text = "$progress %"
+        statusProgressBar.progress = progress
         quoteTextView.text = quotes[(0..5).random()]
-        fab.setOnClickListener { view ->
-            startActivity(Intent(this@HomeActivity, ChatActivity::class.java))
+        fab.setOnClickListener {
+            bottomSheetBehavior2.state = BottomSheetBehavior.STATE_EXPANDED
         }
 
         bottomSheetBehavior = BottomSheetBehavior.from(design_bottom_sheet.view)
+        bottomSheetBehavior2 = BottomSheetBehavior.from(design_bottom_sheet2.view)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        bottomSheetBehavior2.state = BottomSheetBehavior.STATE_HIDDEN
         bottomSheetBehavior.setBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
 
@@ -87,6 +95,26 @@ class HomeActivity : AppCompatActivity(), LaunchBottomSheetListener, JobListener
                     }
                     else -> {
                         shadowView.visibility = View.VISIBLE
+                        fab.hide()
+                    }
+                }
+            }
+
+        })
+
+        bottomSheetBehavior2.setBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback() {
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+
+            }
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when(newState) {
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+                        shadowView2.visibility = View.GONE
+                        fab.show()
+                    }
+                    else -> {
+                        shadowView2.visibility = View.VISIBLE
                         fab.hide()
                     }
                 }
@@ -124,6 +152,17 @@ class HomeActivity : AppCompatActivity(), LaunchBottomSheetListener, JobListener
                     return true
                 }
 
+            } else if (bottomSheetBehavior2.state == BottomSheetBehavior.STATE_EXPANDED) {
+
+                val outRect = Rect()
+                design_bottom_sheet2.view?.getGlobalVisibleRect(outRect)
+
+                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    bottomSheetBehavior2.state = BottomSheetBehavior.STATE_HIDDEN
+
+                    return true
+                }
+
             }
         }
         return super.dispatchTouchEvent(event)
@@ -132,7 +171,9 @@ class HomeActivity : AppCompatActivity(), LaunchBottomSheetListener, JobListener
     override fun onBackPressed() {
         if(bottomSheetBehavior.state != BottomSheetBehavior.STATE_HIDDEN) {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-        } else {
+        } else if(bottomSheetBehavior2.state != BottomSheetBehavior.STATE_HIDDEN) {
+            bottomSheetBehavior2.state = BottomSheetBehavior.STATE_HIDDEN
+        }else {
             super.onBackPressed()
         }
     }
@@ -239,6 +280,8 @@ class HomeActivity : AppCompatActivity(), LaunchBottomSheetListener, JobListener
                 sendMessageToEveryOne()
             }
 
+        } else if(id == 3) {
+            bottomSheetBehavior2.state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
 

@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/ic_dialog_email"/>
+            app:srcCompat="@drawable/ic_add_black_24dp" app:backgroundTint="@color/colorAccent"/>
     <View
             android:id="@+id/shadowView"
             android:layout_width="match_parent"
@@ -42,9 +42,21 @@
                                                   android:id="@+id/design_bottom_sheet"
                                                   app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
                                                   app:behavior_hideable="true"
-                                                  app:behavior_peekHeight="0dp"
-              app:elevation = "20dp"
+                                                    app:elevation = "20dp"
                                                   android:name="com.rahul.hope.fragments.EmergencyCallFragment"/>
 
+    <View
+            android:id="@+id/shadowView2"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@drawable/shape_gradient_top_shadow"
+            app:layout_anchor="@id/design_bottom_sheet2" />
 
+
+    <fragment android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/design_bottom_sheet2"
+              app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+              app:behavior_hideable="true"
+              app:elevation = "20dp"
+              android:name="com.rahul.hope.fragments.SearchFragment"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -82,4 +82,9 @@ class MessageAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.V
     override fun getItemViewType(position: Int): Int {
         return typeList[position]
     }
+
+    fun clear() {
+        messageList.clear()
+        typeList.clear()
+    }
 }

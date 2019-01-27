@@ -9,6 +9,7 @@ class RoomViewModelFactory constructor(private val repository: DataRepository): 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(ContactsViewModel::class.java) -> ContactsViewModel(this.repository) as T
+            modelClass.isAssignableFrom(ChatRoomViewModel::class.java) -> ChatRoomViewModel(this.repository) as T
             else -> throw IllegalArgumentException("ViewModel Not Found")
         }
     }

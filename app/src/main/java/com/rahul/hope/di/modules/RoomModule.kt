@@ -23,5 +23,6 @@ object RoomModule {
     @Singleton
     fun provideDataRepository(sheSafeDatabase: SheSafeDatabase, appExecutors: AppExecutors) =
             DataRepository.getInstance(sheSafeDatabase.emergencyContactsDao(),
+                sheSafeDatabase.chatRoomDao(),
                 appExecutors)
 }

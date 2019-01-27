@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [(EmergencyContactEntry::class)], version = 1, exportSchema = false)
+@Database(entities = [(EmergencyContactEntry::class), (ChatRoomEntry::class)], version = 1, exportSchema = false)
 abstract class SheSafeDatabase : RoomDatabase() {
     companion object {
         private const val DATABASE_NAME = "sheSafeDb"
@@ -29,4 +29,5 @@ abstract class SheSafeDatabase : RoomDatabase() {
     }
 
     abstract fun emergencyContactsDao() : EmergencyContactsDao
+    abstract fun chatRoomDao() : ChatRoomDao
 }

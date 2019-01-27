@@ -21,14 +21,21 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         mUsername = ANONYMOUS
-
+        val sharedPreferences = this.getSharedPreferences(sharedPath, 0)
         mFirebaseAuth = FirebaseAuth.getInstance()
 
         mAuthStateListner = FirebaseAuth.AuthStateListener { firebaseAuth ->
             val user = firebaseAuth.currentUser
             if (user != null) {
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
+                val progress = sharedPreferences.getFloat(STATUS, 0f).toInt()
+                if(progress == 0){
+                    startActivity(Intent(this, TestActivity::class.java))
+                    finish()
+                } else {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                }
+
                 onSignedInInitialize(user.displayName)
             } else {
                 onSignedOutCleanup()
@@ -62,8 +69,7 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
+
             } else if (resultCode == RESULT_CANCELED) {
                 finish()
             }
