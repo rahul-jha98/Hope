@@ -11,14 +11,14 @@ his/her state of mind and we use NLP to suggest them the appropriate chat room.
 
 ###  Screenshots from the App
 
-![](../assets/Home.png)
-*Home Screen of the app*
-
-![](../assets/Signup.png)
-*Questions asked to predict depression level during signup*
-
-![](../assets/Query.png)
-*User could enter is query*
-
-![](../assets/Chats.png)
-*Chatroom*
+<img src="../assets/Home.png" width="340">
+<em>Home Screen of the app</em>
+<br/>
+<img src="../assets/Signup.png" width="340">
+<em>Questions asked to predict depression level during signup</em>
+<br/>
+<img src="../assets/Query.png" width="340">
+<em>User could enter is query</em>
+<br/>
+<img src="../assets/Chats.png" width="340">
+<em>Chatroom</em>
