@@ -9,3 +9,16 @@ his/her state of mind and we use NLP to suggest them the appropriate chat room.
 
 * Every chat room has a bot moderator that directs the flow of the chat.
 
+###  Screenshots from the App
+
+![](../assets/Home.png)
+*Home Screen of the app*
+
+![](../assets/Signup.png)
+*Questions asked to predict depression level during signup*
+
+![](../assets/Query.png)
+*User could enter is query*
+
+![](../assets/Chats.png)
+*Chatroom*
